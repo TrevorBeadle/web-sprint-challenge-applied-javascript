@@ -43,9 +43,55 @@ function carouselMaker() {
   img3.src = "https://tk-assets.lambdaschool.com/5b7441c6-6e4b-4feb-a4ec-8dd2eb76238a_trees.jpeg"
   img4.src = "https://tk-assets.lambdaschool.com/0b770382-d0eb-4465-8bf2-692a79fcda71_turntable.jpeg"
 
+
+  img2.classList.add('hide');
+  img3.classList.add('hide');
+  img4.classList.add('hide');
+  let imgNumber = 1;
   carousel.append(leftButton, img1, img2, img3, img4, rightButton);
   const carouselContainer = document.querySelector('.carousel-container')
   carouselContainer.append(carousel)
+
+rightButton.addEventListener('click', event => {
+  if (imgNumber === 1){
+    imgNumber += 1;
+    img1.classList.toggle('hide');
+    img2.classList.toggle('hide');
+  }else if (imgNumber === 2){
+    imgNumber += 1;
+    img2.classList.toggle('hide');
+    img3.classList.toggle('hide');
+  }else if (imgNumber === 3){
+    imgNumber += 1;
+    img3.classList.toggle('hide');
+    img4.classList.toggle('hide');
+  }else if (imgNumber === 4){
+    imgNumber = 1;
+    img4.classList.toggle('hide');
+    img1.classList.toggle('hide');
+  }
+})
+leftButton.addEventListener('click', event => {
+  if (imgNumber === 1){
+    imgNumber = 4;
+    img1.classList.toggle('hide');
+    img4.classList.toggle('hide');
+  }else if (imgNumber === 4){
+    imgNumber -= 1;
+    img4.classList.toggle('hide');
+    img3.classList.toggle('hide');
+  }else if (imgNumber === 3){
+    imgNumber -= 1;
+    img3.classList.toggle('hide');
+    img2.classList.toggle('hide');
+  }else if (imgNumber === 2){
+    imgNumber -= 1;
+    img2.classList.toggle('hide');
+    img1.classList.toggle('hide');
+  }
+})
+  
+  
   return carouselContainer
 }
 

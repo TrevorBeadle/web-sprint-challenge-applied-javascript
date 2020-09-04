@@ -15,10 +15,15 @@ import axios from 'axios';
 axios.get('https://lambda-times-api.herokuapp.com/topics')
     .then(response => {
         response.data.topics.forEach(item => {
+            // creating tab elements and adding tab class to it
             const tab = document.createElement('div');
             tab.classList.add('tab');
+
+            // selecting topics and adding text content to it
             const topics = document.querySelector('.topics');
             tab.textContent = `${item}`;
+            
+            // appending each tab to topics
             topics.append(tab);
             
             return topics;

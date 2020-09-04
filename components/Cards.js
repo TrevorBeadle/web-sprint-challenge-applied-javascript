@@ -1,3 +1,6 @@
+const { default: Axios } = require("axios");
+import axios from 'axios';
+
 // STEP 3: Create article cards.
 // -----------------------
 // Send an HTTP GET request to the following address: https://lambda-times-api.herokuapp.com/articles
@@ -20,3 +23,45 @@
 // Add a listener for click events so that when a user clicks on a card, the headline of the article is logged to the console.
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
+
+// axios.get('https://lambda-times-api.herokuapp.com/articles')
+//     .then(response => {
+//         response.data.articles.forEach(item => {
+            
+//         })
+//     })
+
+
+function cardMaker(object) {
+    // creating elements for cards
+    const card = document.createElement('div')
+    const headline = document.createElement('div')
+    const author = document.createElement('div')
+    const imgContainer = document.createElement('div')
+    const img = document.createElement('img')
+    const span = document.createElement('span')
+
+    // adding classes to created elements
+    card.classList.add('card')
+    headline.classList.add('headline')
+    author.classList.add('author')
+    imgContainer.classList.add('img-container')
+
+    // adding content to elements
+    headline.textContent = object.headline
+    img.src = object.authorPhoto
+    span.textContent = `By ${object.authorName}`
+
+    // appending elements as shown above
+    card.append(headline)
+    card.append(author)
+    author.append(imgContainer)
+    imgContainer.append(img)
+    author.append(span)
+
+    //appending card to cards-container
+    const cardsContainer = document.querySelector('.cards-container')
+    cardsContainer.append(card);
+
+    return cardsContainer
+}
